@@ -1,3 +1,11 @@
+This is a fork of [web3p/web3.php](https://github.com/web3p/web3.php). Changes in this fork:
+
+* Depends on phpseclib version 3 instead of 2, to be compatible with most other recent packages.
+
+Original README below.
+
+---
+
 # web3.php
 
 [![PHP](https://github.com/web3p/web3.php/actions/workflows/php.yml/badge.svg)](https://github.com/web3p/web3.php/actions/workflows/php.yml)

@@ -15,7 +15,7 @@ use RuntimeException;
 use InvalidArgumentException;
 use stdClass;
 use kornrunner\Keccak;
-use phpseclib\Math\BigInteger as BigNumber;
+use phpseclib3\Math\BigInteger as BigNumber;
 
 class Utils
 {
@@ -296,7 +296,7 @@ class Utils
      * 
      * @param BigNumber|string $number
      * @param string $unit
-     * @return \phpseclib\Math\BigInteger
+     * @return \phpseclib3\Math\BigInteger
      */
     public static function toWei($number, $unit)
     {
@@ -328,19 +328,7 @@ class Utils
             // See dev-master BigInteger: https://github.com/phpseclib/phpseclib/blob/master/phpseclib/Math/BigInteger.php#L700
             // $base = (new BigNumber(10))->pow(new BigNumber($fractionLength));
 
-            // So we switch phpseclib special global param, change in the future
-            switch (MATH_BIGINTEGER_MODE) {
-                case $whole::MODE_GMP:
-                    static $two;
-                    $powerBase = gmp_pow(gmp_init(10), (int) $fractionLength);
-                    break;
-                case $whole::MODE_BCMATH:
-                    $powerBase = bcpow('10', (string) $fractionLength, 0);
-                    break;
-                default:
-                    $powerBase = pow(10, (int) $fractionLength);
-                    break;
-            }
+            $powerBase = bcpow('10', (string) $fractionLength, 0);
             $base = new BigNumber($powerBase);
             $fraction = $fraction->multiply($bnt)->divide($base)[0];
 
@@ -384,7 +372,7 @@ class Utils
      * 
      * @param BigNumber|string|int $number
      * @param string $unit
-     * @return \phpseclib\Math\BigInteger
+     * @return \phpseclib3\Math\BigInteger
      */
     public static function fromWei($number, $unit)
     {
@@ -487,7 +475,7 @@ class Utils
      * Change number or number string to bignumber.
      * 
      * @param BigNumber|string|int $number
-     * @return array|\phpseclib\Math\BigInteger
+     * @return array|\phpseclib3\Math\BigInteger
      */
     public static function toBn($number)
     {
